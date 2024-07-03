@@ -1,14 +1,29 @@
 import './App.css';
 
+import Login from './components/auth/login';
+import Register from './components/auth/register';
+
+import Header from './components/header';
+import Home from './components/home';
+
+import { AuthProvider } from './context/authContext';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import Routes and Route
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 style={{color: 'red'}}>
-          Learn React
-        </h1>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Header />
+        <div className="w-full h-screen flex flex-col">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
